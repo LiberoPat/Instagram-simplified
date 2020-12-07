@@ -4,8 +4,8 @@ $(document).ready(function(){
     $(".favoriteIcon").on("click",function(){
         
     let queryString = window.location.search;
-    let urlParams = new UrlSearchParams(queryString);
-    let keyword = UrlParams.get("keyword");
+    let urlParams = new URLSearchParams(queryString);
+    let keyword = urlParams.get("keyword");
     
     let imageUrl= $(this).prev().attr("src");
 
@@ -20,20 +20,11 @@ $(document).ready(function(){
     });//favicon
     
     
-    function updateFavorite(action, imageUrl, keyword){
-        $.ajax({
-            method: "get",
-            url: "/api/updateFavorites",
-            data: {
-                "action":action,
-                "imageUrl":imageUrl,
-                "keyword": keyword
-            },
-            success: function(data, status){
-                
-            }
-        });//ajax
-    }//update fav
+async function updateFavorite(action, imageUrl, keyword) {
+    let url = `/api/updateFavorites?action=${action}&imageUrl=${imageUrl}&keyword=${keyword}`
+    await fetch(url);
+    
+}
     
         //When clicking on any keyword link, 
     //all corresponding images are displayed 

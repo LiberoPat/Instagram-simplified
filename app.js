@@ -47,7 +47,10 @@ app.get("/api/updateFavorites", function(req, res){
     console.log(rows);
     res.send(rows.affectedRows.toString());
   });
+    
 });//api/updateFavorites
+
+
 
 app.get("/getKeywords",  function(req, res) {
   let sql = "SELECT DISTINCT keyword FROM favorites ORDER BY keyword";
